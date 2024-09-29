@@ -4,3 +4,6 @@
 [submodule "slcan"]
 	path = slcan
 	url = https://github.com/catompiler/slcan
+[submodule "canopen-stack"]
+	path = canopen-stack
+	url = git@github.com:embedded-office/canopen-stack.git
