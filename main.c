@@ -5,6 +5,7 @@
 // slcan.
 #include "slcan/slcan.h"
 #include "slcan/slcan_slave.h"
+#include "slcan/slcan_utils.h"
 // CANopen.
 #include "CANopenNode/CANopen.h"
 #include "OD.h"
@@ -126,6 +127,10 @@ static void main_poll(slcan_slave_t* slave, CO_t* co)
 
     //slcan_err_t err = E_SLCAN_NO_ERROR;
 
+    struct timespec ts_cur, ts_prev;
+    clock_gettime(CLOCK_MONOTONIC, &ts_prev);
+    unsigned int dt_us = 0;
+
     struct timespec ts;
     ts.tv_sec = 0; ts.tv_nsec = 1000000; // 1 ms.
     while(--max_polls != 0){
@@ -135,7 +140,15 @@ static void main_poll(slcan_slave_t* slave, CO_t* co)
             CO_CANinterrupt(co->CANmodule);
         //}
 
-        reset_cmd = CO_process(co, false, 1000, NULL);
+        clock_gettime(CLOCK_MONOTONIC, &ts_cur);
+        slcan_timespec_sub(&ts_cur, &ts_prev, &ts_prev);
+        dt_us = ts_prev.tv_sec * 1000000 + ts_prev.tv_nsec / 1000;
+        ts_prev.tv_sec = ts_cur.tv_sec;
+        ts_prev.tv_nsec = ts_cur.tv_nsec;
+
+        //printf("%u\n", dt_us);
+
+        reset_cmd = CO_process(co, false, dt_us, NULL);
 
         if(reset_cmd == CO_RESET_NOT){
             //printf("CO_NMT_NO_COMMAND");

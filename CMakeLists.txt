@@ -7,6 +7,7 @@ list(APPEND TARGET_SOURCES
     main.c
     CO_driver_slcan_slave.c
     OD.c
+    reg_data.c
 )
     
 list(APPEND CANOPENNODE_SOURCES

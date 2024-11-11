@@ -30,7 +30,7 @@
 #define CO_CONFIG_HB_CONS 0
 
 // HB config.
-#define FIRST_HB_TIME_MS 0xffff
+#define FIRST_HB_TIME_MS 0
 
 // NMT config.
 #define CO_CONFIG_NMT (CO_NMT_STARTUP_TO_OPERATIONAL)
