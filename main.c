@@ -9,6 +9,8 @@
 // CANopen.
 #include "CANopenNode/CANopen.h"
 #include "OD.h"
+// data.
+#include "reg_data.h"
 
 
 // slcan.
@@ -121,7 +123,7 @@ static void deinit_CO(CO_t* co)
 
 static void main_poll(slcan_slave_t* slave, CO_t* co)
 {
-    int max_polls = 1000;
+    int max_polls = 0;
 
     CO_NMT_reset_cmd_t reset_cmd = CO_NMT_NO_COMMAND;
 
@@ -160,20 +162,38 @@ static void main_poll(slcan_slave_t* slave, CO_t* co)
             printf("CO_RESET_QUIT");
         }
 
+        reg_data.counter.value ++;
+        fflush(stdout);
+        fflush(stderr);
+
         nanosleep(&ts, NULL);
     }
 }
 
 
+static slcan_err_t slcan_callback_default()
+{
+	return E_SLCAN_NO_ERROR;
+}
+
 int main(int argc, char* argv[])
 {
-
     const char* slave_serial_port_name = SLAVE_TTY;
 
     int res;
     CO_ReturnError_t coerr;
 
-    res = init_slcan_slave(&slave, &slave_slcan, NULL, slave_serial_port_name);
+    slcan_slave_callbacks_t scb;
+    scb.on_close = (slcan_on_close_t)slcan_callback_default;
+    scb.on_listen = (slcan_on_listen_t)slcan_callback_default;
+    scb.on_open = (slcan_on_open_t)slcan_callback_default;
+    scb.on_set_acceptance_filter = (slcan_on_set_acceptance_filter_t)slcan_callback_default;
+    scb.on_set_acceptance_mask = (slcan_on_set_acceptance_mask_t)slcan_callback_default;
+    scb.on_setup_can_btr = (slcan_on_setup_can_btr_t)slcan_callback_default;
+    scb.on_setup_can_std = (slcan_on_setup_can_std_t)slcan_callback_default;
+    scb.on_setup_uart = (slcan_on_setup_uart_t)slcan_callback_default;
+
+    res = init_slcan_slave(&slave, &slave_slcan, &scb, slave_serial_port_name);
     if(res == -1){
         printf("Error init slave slcan!\n");
         return -1;

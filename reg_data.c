@@ -51,7 +51,7 @@ struct _S_reg_data reg_data = {
     .consumerHeartbeatTime = { 0, 0, 0, 0, 0, 0, 0, 0 } /*  */
 },
 .producerHeartbeatTime = {
-    .value = 1000 /*  */
+    .value = 0 /*  */
 },
 .identity = {
     .highestSub_indexSupported = 4 /* Number of sub-entries */,

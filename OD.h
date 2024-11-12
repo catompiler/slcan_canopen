@@ -1,5 +1,5 @@
-#ifndef CO_H
-#define CO_H
+#ifndef OD_H
+#define OD_H
 
 
 // THIS FILE IS GENERATED AUTOMATICALLY!
@@ -114,4 +114,4 @@ extern OD_ATTR_OD OD_t *OD;
 
 
 
-#endif /* CO_H */
+#endif /* OD_H */

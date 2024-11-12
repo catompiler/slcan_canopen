@@ -41,11 +41,8 @@
 #define SLCAN_SLAVE_POLL_SLCAN 1
 
 
-//! Флаг поллинга io мастером.
-#define SLCAN_MASTER_POLL_SLCAN 1
-
-//! Флаг поллинга io ведомым.
-#define SLCAN_SLAVE_POLL_SLCAN 1
+//! Отладка сообщений.
+#define SLCAN_DEBUG_INCOMING_CMDS 1
 
 
 #endif /* SLCAN_CONF_H_ */

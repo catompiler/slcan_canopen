@@ -918,7 +918,7 @@ static CO_PROGMEM ODObjs_t ODObjs = {
 },
 .o_2000_counter = {
     .dataOrig = &reg_data.counter.value,
-    .attribute = ODA_SDO_W | ODA_TRPDO | ODA_MB,
+    .attribute = ODA_SDO_RW | ODA_TRPDO | ODA_MB,
     .dataLength = 4
 }
 };
