@@ -268,6 +268,10 @@ struct _S_values {
     int32_t values[2]; /*  */
 } values;
 
+struct _S_objstr {
+    char value[4]; /*  */
+} objstr;
+
 };
 extern struct _S_reg_data reg_data;
 

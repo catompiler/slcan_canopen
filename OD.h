@@ -77,6 +77,8 @@ extern OD_ATTR_OD OD_t *OD;
 #define OD_ENTRY_H2000 &OD->list[33]
 #define OD_ENTRY_H2001 &OD->list[34]
 #define OD_ENTRY_H2002 &OD->list[35]
+#define OD_ENTRY_H2003 &OD->list[36]
+#define OD_ENTRY_H2004 &OD->list[37]
 
 
 // Object dictionary entries - shortcuts with names
@@ -116,6 +118,8 @@ extern OD_ATTR_OD OD_t *OD;
 #define OD_ENTRY_H2000_counter &OD->list[33]
 #define OD_ENTRY_H2001_quit &OD->list[34]
 #define OD_ENTRY_H2002_values &OD->list[35]
+#define OD_ENTRY_H2003_objstr &OD->list[36]
+#define OD_ENTRY_H2004_objdom &OD->list[37]
 
 
 // OD config structure

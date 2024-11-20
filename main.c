@@ -11,6 +11,8 @@
 #include "OD.h"
 // data.
 #include "reg_data.h"
+// domain.
+#include "co_domain.h"
 
 
 // slcan.
@@ -27,6 +29,11 @@ static slcan_slave_t slave;
 
 // CANopen.
 CO_t* co_ptr = NULL;
+
+// domains.
+#define DOM_H2004_SIZE 16
+uint8_t dom_h2004_data[DOM_H2004_SIZE] = {0};
+co_domain_t dom_h2004;
 
 
 // slcan.
@@ -104,6 +111,13 @@ static CO_ReturnError_t init_CO(CO_t* co, slcan_slave_t* scs)
 
     if(coerr != CO_ERROR_NO){
         printf("CANopen init PDO fail! (err: %d err_info: %d)\n", (int)coerr, (int)errInfo);
+        return coerr;
+    }
+
+    coerr = co_domain_init(&dom_h2004, dom_h2004_data, DOM_H2004_SIZE, OD_ENTRY_H2004_objdom, &errInfo);
+
+    if(coerr != CO_ERROR_NO){
+        printf("co_domain_init fail! (err: %d err_info: %d)\n", (int)coerr, (int)errInfo);
         return coerr;
     }
 

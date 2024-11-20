@@ -227,5 +227,8 @@ struct _S_reg_data reg_data = {
 .values = {
     .count = 2 /* Number of sub-entries */,
     .values = { 0, 0 } /*  */
+},
+.objstr = {
+    .value = { 't', 'e', 's', 't' } /*  */
 }
 };

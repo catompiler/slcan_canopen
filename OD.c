@@ -51,6 +51,8 @@ typedef struct {
     OD_obj_var_t o_2000_counter;
     OD_obj_var_t o_2001_quit;
     OD_obj_array_t o_2002_values;
+    OD_obj_var_t o_2003_objstr;
+    OD_obj_var_t o_2004_objdom;
 } ODObjs_t;
 
 static CO_PROGMEM ODObjs_t ODObjs = {
@@ -68,7 +70,7 @@ static CO_PROGMEM ODObjs_t ODObjs = {
     .dataOrig0 = &reg_data.pre_definedErrorField.numberOfErrors,
     .dataOrig = &reg_data.pre_definedErrorField.pre_definedErrorField[0],
     .attribute0 = ODA_SDO_RW,
-    .attribute = ODA_SDO_R | ODA_MB,
+    .attribute = ODA_SDO_R,
     .dataElementLength = 4,
     .dataElementSizeof = sizeof(uint32_t)
 },
@@ -91,7 +93,7 @@ static CO_PROGMEM ODObjs_t ODObjs = {
     .dataOrig0 = &reg_data.storeParameters.highestSub_indexSupported,
     .dataOrig = &reg_data.storeParameters.storeParameters[0],
     .attribute0 = ODA_SDO_R,
-    .attribute = ODA_SDO_RW | ODA_MB,
+    .attribute = ODA_SDO_RW,
     .dataElementLength = 4,
     .dataElementSizeof = sizeof(uint32_t)
 },
@@ -99,7 +101,7 @@ static CO_PROGMEM ODObjs_t ODObjs = {
     .dataOrig0 = &reg_data.restoreDefaultParameters.highestSub_indexSupported,
     .dataOrig = &reg_data.restoreDefaultParameters.restoreDefaultParameters[0],
     .attribute0 = ODA_SDO_R,
-    .attribute = ODA_SDO_RW | ODA_MB,
+    .attribute = ODA_SDO_RW,
     .dataElementLength = 4,
     .dataElementSizeof = sizeof(uint32_t)
 },
@@ -122,7 +124,7 @@ static CO_PROGMEM ODObjs_t ODObjs = {
     .dataOrig0 = &reg_data.consumerHeartbeatTime.highestSub_indexSupported,
     .dataOrig = &reg_data.consumerHeartbeatTime.consumerHeartbeatTime[0],
     .attribute0 = ODA_SDO_R,
-    .attribute = ODA_SDO_RW | ODA_MB,
+    .attribute = ODA_SDO_RW,
     .dataElementLength = 4,
     .dataElementSizeof = sizeof(uint32_t)
 },
@@ -932,9 +934,19 @@ static CO_PROGMEM ODObjs_t ODObjs = {
     .dataOrig0 = &reg_data.values.count,
     .dataOrig = &reg_data.values.values[0],
     .attribute0 = ODA_SDO_R | ODA_TPDO,
-    .attribute = ODA_SDO_RW | ODA_TRPDO | ODA_MB,
+    .attribute = ODA_SDO_RW | ODA_TRPDO,
     .dataElementLength = 4,
     .dataElementSizeof = sizeof(int32_t)
+},
+.o_2003_objstr = {
+    .dataOrig = &reg_data.objstr.value[0],
+    .attribute = ODA_SDO_RW | ODA_STR,
+    .dataLength = 4
+},
+.o_2004_objdom = {
+    .dataOrig = NULL,
+    .attribute = ODA_SDO_RW,
+    .dataLength = 0
 }
 };
 // Object dictionary
@@ -975,6 +987,8 @@ static OD_ATTR_OD OD_entry_t ODList[] = {
     {0x2000, 0x01, ODT_VAR, &ODObjs.o_2000_counter, NULL},
     {0x2001, 0x01, ODT_VAR, &ODObjs.o_2001_quit, NULL},
     {0x2002, 0x03, ODT_ARR, &ODObjs.o_2002_values, NULL},
+    {0x2003, 0x01, ODT_VAR, &ODObjs.o_2003_objstr, NULL},
+    {0x2004, 0x01, ODT_VAR, &ODObjs.o_2004_objdom, NULL},
     {0x0000, 0x00, 0, NULL, NULL}
 };
 
