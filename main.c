@@ -162,9 +162,14 @@ static void main_poll(slcan_slave_t* slave, CO_t* co)
             printf("CO_RESET_QUIT");
         }
 
+        reg_data.values.values[0] = dt_us / 1000;
+        reg_data.values.values[1] = dt_us % 1000;
+
         reg_data.counter.value ++;
         fflush(stdout);
         fflush(stderr);
+
+        if(reg_data.quit.value != 0) break;
 
         nanosleep(&ts, NULL);
     }

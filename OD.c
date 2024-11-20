@@ -49,6 +49,8 @@ typedef struct {
     OD_obj_record_t o_1A02_TPDOMappingParameter[9];
     OD_obj_record_t o_1A03_TPDOMappingParameter[9];
     OD_obj_var_t o_2000_counter;
+    OD_obj_var_t o_2001_quit;
+    OD_obj_array_t o_2002_values;
 } ODObjs_t;
 
 static CO_PROGMEM ODObjs_t ODObjs = {
@@ -920,6 +922,19 @@ static CO_PROGMEM ODObjs_t ODObjs = {
     .dataOrig = &reg_data.counter.value,
     .attribute = ODA_SDO_RW | ODA_TRPDO | ODA_MB,
     .dataLength = 4
+},
+.o_2001_quit = {
+    .dataOrig = &reg_data.quit.value,
+    .attribute = ODA_SDO_RW | ODA_TRPDO | ODA_MB,
+    .dataLength = 4
+},
+.o_2002_values = {
+    .dataOrig0 = &reg_data.values.count,
+    .dataOrig = &reg_data.values.values[0],
+    .attribute0 = ODA_SDO_R | ODA_TPDO,
+    .attribute = ODA_SDO_RW | ODA_TRPDO | ODA_MB,
+    .dataElementLength = 4,
+    .dataElementSizeof = sizeof(int32_t)
 }
 };
 // Object dictionary
@@ -958,6 +973,8 @@ static OD_ATTR_OD OD_entry_t ODList[] = {
     {0x1a02, 0x09, ODT_REC, &ODObjs.o_1A02_TPDOMappingParameter, NULL},
     {0x1a03, 0x09, ODT_REC, &ODObjs.o_1A03_TPDOMappingParameter, NULL},
     {0x2000, 0x01, ODT_VAR, &ODObjs.o_2000_counter, NULL},
+    {0x2001, 0x01, ODT_VAR, &ODObjs.o_2001_quit, NULL},
+    {0x2002, 0x03, ODT_ARR, &ODObjs.o_2002_values, NULL},
     {0x0000, 0x00, 0, NULL, NULL}
 };
 

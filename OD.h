@@ -31,6 +31,7 @@
 #define OD_CNT_ARR_1010 4
 #define OD_CNT_ARR_1011 4
 #define OD_CNT_ARR_1016 8
+#define OD_CNT_ARR_2002 2
 
 
 #ifndef OD_ATTR_OD
@@ -74,6 +75,8 @@ extern OD_ATTR_OD OD_t *OD;
 #define OD_ENTRY_H1A02 &OD->list[31]
 #define OD_ENTRY_H1A03 &OD->list[32]
 #define OD_ENTRY_H2000 &OD->list[33]
+#define OD_ENTRY_H2001 &OD->list[34]
+#define OD_ENTRY_H2002 &OD->list[35]
 
 
 // Object dictionary entries - shortcuts with names
@@ -111,7 +114,54 @@ extern OD_ATTR_OD OD_t *OD;
 #define OD_ENTRY_H1A02_TPDOMappingParameter &OD->list[31]
 #define OD_ENTRY_H1A03_TPDOMappingParameter &OD->list[32]
 #define OD_ENTRY_H2000_counter &OD->list[33]
+#define OD_ENTRY_H2001_quit &OD->list[34]
+#define OD_ENTRY_H2002_values &OD->list[35]
 
 
+// OD config structure
+#ifdef CO_MULTIPLE_OD
+#define OD_INIT_CONFIG(config) {\
+(config).CNT_NMT = OD_CNT_NMT;\
+(config).ENTRY_H1017 = OD_ENTRY_H1017_producerHeartbeatTime;\
+(config).CNT_HB_CONS = OD_CNT_HB_CONS;\
+(config).CNT_ARR_1016 = OD_CNT_ARR_1016;\
+(config).ENTRY_H1016 = OD_ENTRY_H1016_consumerHeartbeatTime;\
+(config).CNT_EM = OD_CNT_EM;\
+(config).ENTRY_H1001 = OD_ENTRY_H1001_errorRegister;\
+(config).ENTRY_H1014 = OD_ENTRY_H1014_COB_ID_EMCY;\
+(config).ENTRY_H1015 = OD_ENTRY_H1015_inhibitTimeEMCY;\
+(config).CNT_ARR_1003 = OD_CNT_ARR_1003;\
+(config).ENTRY_H1003 = OD_ENTRY_H1003_pre_definedErrorField;\
+(config).CNT_SDO_SRV = OD_CNT_SDO_SRV;\
+(config).ENTRY_H1200 = OD_ENTRY_H1200_SDOServerParameter;\
+(config).CNT_SDO_CLI = OD_CNT_SDO_CLI;\
+(config).ENTRY_H1280 = OD_ENTRY_H1280_SDOClientParameter;\
+(config).CNT_TIME = OD_CNT_TIME;\
+(config).ENTRY_H1012 = OD_ENTRY_H1012_COB_IDTimeStampObject;\
+(config).CNT_SYNC = OD_CNT_SYNC;\
+(config).ENTRY_H1005 = OD_ENTRY_H1005_COB_ID_SYNCMessage;\
+(config).ENTRY_H1006 = OD_ENTRY_H1006_communicationCyclePeriod;\
+(config).ENTRY_H1007 = OD_ENTRY_H1007_synchronousWindowLength;\
+(config).ENTRY_H1019 = OD_ENTRY_H1019_synchronousCounterOverflowValue;\
+(config).CNT_RPDO = OD_CNT_RPDO;\
+(config).ENTRY_H1400 = OD_ENTRY_H1400_RPDOCommunicationParameter;\
+(config).ENTRY_H1600 = OD_ENTRY_H1600_RPDOMappingParameter;\
+(config).CNT_TPDO = OD_CNT_TPDO;\
+(config).ENTRY_H1800 = OD_ENTRY_H1800_TPDOCommunicationParameter;\
+(config).ENTRY_H1A00 = OD_ENTRY_H1A00_TPDOMappingParameter;\
+(config).CNT_LEDS = 0;\
+(config).CNT_GFC = 0;\
+(config).ENTRY_H1300 = NULL;\
+(config).CNT_SRDO = 0;\
+(config).ENTRY_H1301 = NULL;\
+(config).ENTRY_H1381 = NULL;\
+(config).ENTRY_H13FE = NULL;\
+(config).ENTRY_H13FF = NULL;\
+(config).CNT_LSS_SLV = 0;\
+(config).CNT_LSS_MST = 0;\
+(config).CNT_GTWA = 0;\
+(config).CNT_TRACE = 0;\
+}
+#endif
 
 #endif /* OD_H */

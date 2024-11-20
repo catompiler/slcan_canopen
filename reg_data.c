@@ -220,5 +220,12 @@ struct _S_reg_data reg_data = {
 },
 .counter = {
     .value = 0 /*  */
+},
+.quit = {
+    .value = 0 /*  */
+},
+.values = {
+    .count = 2 /* Number of sub-entries */,
+    .values = { 0, 0 } /*  */
 }
 };

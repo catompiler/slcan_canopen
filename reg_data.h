@@ -259,6 +259,15 @@ struct _S_counter {
     uint32_t value; /*  */
 } counter;
 
+struct _S_quit {
+    uint32_t value; /*  */
+} quit;
+
+struct _S_values {
+    uint8_t count; /* Number of sub-entries */
+    int32_t values[2]; /*  */
+} values;
+
 };
 extern struct _S_reg_data reg_data;
 
