@@ -14,6 +14,7 @@
 // domain.
 #include "co_domain.h"
 
+#include <math.h>
 
 // slcan.
 #ifdef __linux
@@ -176,7 +177,7 @@ static void main_poll(slcan_slave_t* slave, CO_t* co)
             printf("CO_RESET_QUIT");
         }
 
-        reg_data.values.values[0] = dt_us / 1000;
+        reg_data.values.values[0] = (int)ceil(100.0 * sin(2.0 * M_PI * 0.01 * 1.75 * reg_data.counter.value));//dt_us / 1000;
         reg_data.values.values[1] = dt_us % 1000;
 
         reg_data.counter.value ++;
